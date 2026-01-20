@@ -5,9 +5,15 @@ using UnityEngine;
 public class Blaster : MonoBehaviour
 {
     public GameObject objectToSpawn;
+    public GunStats stats;
     public float setupTimer;
     float interval;
     float timer;
+
+    void Awake()
+    {
+        setupTimer = stats.setupTimer;
+    }
     void Start()
     {
         interval = setupTimer;

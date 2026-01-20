@@ -3,14 +3,14 @@ using UnityEngine;
 public abstract class ShopButton : MonoBehaviour
 {
     public int cost;
-    private GameObject econ;
+    private GameObject global;
     protected virtual void Start()
     {
-        econ = GameObject.Find("Global");
+        global = GameObject.Find("Global");
     }
     public virtual void ButtonClick()
     {
-        if(econ.GetComponent<Econ>().Deduct(cost))
+        if(global.GetComponent<Econ>().Deduct(cost))
         {
             Execute();
         }

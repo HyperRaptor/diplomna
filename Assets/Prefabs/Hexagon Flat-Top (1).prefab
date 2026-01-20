@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8272945861646755610}
   - component: {fileID: -5727258999378773696}
   - component: {fileID: -8756568889572428387}
+  - component: {fileID: 5956448390070814025}
   m_Layer: 3
   m_Name: Hexagon Flat-Top (1)
   m_TagString: Untagged
@@ -199,4 +200,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 5397462529930999892, guid: 1c3dabaf10951a74383059f82f999af5, type: 3}
+  stats: {fileID: 5956448390070814025}
+--- !u!114 &5956448390070814025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613268585469084173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a1b26823782fba4f85f2d5d84bdc967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
   setupTimer: 1

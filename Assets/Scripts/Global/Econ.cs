@@ -13,6 +13,7 @@ public class Econ : MonoBehaviour
     public float setupTimer;
     void Start()
     {
+        Time.timeScale = 1;
         display = GameObject.Find("Money").GetComponent<TMP_Text>();
         display.text = money.ToString();
         interval = setupTimer;
