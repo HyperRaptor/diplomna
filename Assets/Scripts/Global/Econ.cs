@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class Econ : MonoBehaviour
 {
+    //Script to manage the player's money and it's changes
     private TMP_Text display;
     public int money = 0;
     public int econ = 10;

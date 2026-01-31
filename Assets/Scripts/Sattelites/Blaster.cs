@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Blaster : MonoBehaviour
 {
+    //Script that manages the firing of the blaster satellite
     public GameObject objectToSpawn;
     public GunStats stats;
     public float setupTimer;

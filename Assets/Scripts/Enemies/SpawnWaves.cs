@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnWaves : MonoBehaviour
 {
+    //Script for spawning enemies for the player to defend against
     public GameObject objectToSpawn;
     public float setupTimer;
     private float interval;

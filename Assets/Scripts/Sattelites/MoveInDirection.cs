@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MoveInDirection : MonoBehaviour
 {
+    //Script that dictates the movement of the blaster's bullets
     Vector3 direction;
     public float speed = 5;
     public void SetDirection(Vector3 dir)

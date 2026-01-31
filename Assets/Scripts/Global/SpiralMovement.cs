@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpiralMovement : MonoBehaviour
 {
+    //Script that allows for the orbiting and spiralling into the black hole
     GameObject Centre;
     public int angle;
     public int speed = 1;

@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
 
 public abstract class EconButton : ShopButton
 {
+    //Script that manages the limited presses of an econ or upgrade type shop buttons
     private int current = 0;
     public int max = 1;
     private TMP_Text count;

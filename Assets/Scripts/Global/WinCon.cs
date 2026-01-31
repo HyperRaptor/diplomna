@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class WinCon : MonoBehaviour
 {
+    //Script that manages the player's victory
     public GameObject gameWin;
     public float endTime;
     private float timer = 0;

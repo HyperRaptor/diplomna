@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PublicFundingButton : EconButton
 {
+    //Script for a shop button that increases the rate at which the player's money increases
     public int prod;
     private Econ econ;
 

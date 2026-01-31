@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5120881725144567497}
   - component: {fileID: 2389061403622635658}
   - component: {fileID: -1266561549495363461}
-  - component: {fileID: 8272945861646755610}
   - component: {fileID: -5727258999378773696}
   - component: {fileID: -8756568889572428387}
   - component: {fileID: 5956448390070814025}
@@ -32,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 8613268585469084173}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.5, y: 2.5, z: 0}
+  m_LocalPosition: {x: 100, y: 100, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -112,7 +111,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -154,25 +153,11 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8272945861646755610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8613268585469084173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8be366d583658c4f88b9f8867940cd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisScript: {fileID: 8272945861646755610}
-  moveScript: {fileID: -5727258999378773696}
 --- !u!114 &-5727258999378773696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +165,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8613268585469084173}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 804c4be72362b2548a7591fbb94c7cc1, type: 3}
   m_Name: 
@@ -201,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 5397462529930999892, guid: 1c3dabaf10951a74383059f82f999af5, type: 3}
   stats: {fileID: 5956448390070814025}
+  setupTimer: 0
 --- !u!114 &5956448390070814025
 MonoBehaviour:
   m_ObjectHideFlags: 0

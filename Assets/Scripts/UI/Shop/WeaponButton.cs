@@ -1,24 +1,22 @@
 using UnityEngine;
 
-namespace Shop
+public class WeaponButton : ShopButton
 {
-    public class WeaponButton : ShopButton
+    //Script for a shop button that creates a satellite
+    public GameObject objectToSpawn;
+    private GameObject shop;
+    private GameObject shopToggle;
+    protected override void Start()
     {
-        public GameObject objectToSpawn;
-        private GameObject shop;
-        private GameObject shopToggle;
-        protected override void Start()
-        {
-            base.Start();
-            shop = GameObject.Find("Shop");
-            shopToggle = GameObject.Find("ShopToggleName");
-        }
+        base.Start();
+        shop = GameObject.Find("Shop");
+        shopToggle = GameObject.Find("ShopToggleName");
+    }
 
-        protected override void Execute()
-        {
-            UnitManager.Instance.Guns.Add(Instantiate(objectToSpawn));
-            shop.GetComponent<ShopToggle>().Toggle();
-            shopToggle.GetComponent<ToggleArrow>().Toggle();
-        }
+    protected override void Execute()
+    {
+        PlacementManager.Instance.BeginPlacement(objectToSpawn);
+        shop.GetComponent<ShopToggle>().Toggle(); 
+        shopToggle.GetComponent<ToggleArrow>().Toggle(); 
     }
 }

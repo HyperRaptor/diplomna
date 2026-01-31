@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopToggle : MonoBehaviour
 {
-    //private const float moveAmountX = -520f;
-    private const float moveAmountX = -380f;
+    //Script that moves the shop of and on screen
+    private float moveAmountX;
     private RectTransform targetPanel;
     private bool hidden = false;
 
+    void Start()
+    {
+        moveAmountX = GetComponent<RectTransform>().anchoredPosition.x;
+    }
     public void Toggle()
     {
         Vector2 anchored = GetComponent<RectTransform>().anchoredPosition;

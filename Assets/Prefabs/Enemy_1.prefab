@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 136529623252610704}
   m_Layer: 0
   m_Name: Enemy_1
-  m_TagString: Eatable
+  m_TagString: Consumable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ee3c088c0b3f9479372423a2a3c1b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0.03
+  health: 25
   ShieldValue: 0
 --- !u!114 &876034431178236805
 MonoBehaviour:
@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9219c6b9362170547af043917b1c8333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
 --- !u!58 &5917209871207038513
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class MenuToggle : LevelToggle
+public class MenuToggle : MonoBehaviour
 {
-    public override void Toggle()
+    protected bool isActive;
+    public virtual void Toggle()
     {
-        base.Toggle();
-        Time.timeScale = !isActive ? 0f : 1f;
+        isActive = gameObject.activeSelf;
+        gameObject.SetActive(!isActive);
     }
 }
