@@ -53,7 +53,7 @@ public class PlacementManager : MonoBehaviour
 #endif
         if (validInput)
         {
-            Instantiate(objectToPlace, spawnPosition, Quaternion.identity);
+            UnitManager.Instance.Sattelites.Add(Instantiate(objectToPlace, spawnPosition, Quaternion.identity));
             waitingForPlacement = false;
             objectToPlace = null;
         }
