@@ -28,6 +28,13 @@ jobs:
             Library-${{ runner.os }}-
             Library-
       
+      - name: Generate solution
+        run: |
+          /opt/unity/Editor/Unity \
+          -batchmode \
+          -quit \
+          -projectPath .
+
       - name: Run dotnet format (linter)
         run: dotnet format --verify-no-changes
       
