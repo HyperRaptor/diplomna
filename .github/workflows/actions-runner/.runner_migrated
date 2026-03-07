@@ -1,0 +1,11 @@
+﻿{
+  "agentId": 2,
+  "agentName": "diplom ci",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://pipelinesghubeus23.actions.githubusercontent.com/uhRipAyegVFX6uCW88hEz6BgANNSWSojEVt3gxJXEnVUsAYyXM/",
+  "gitHubUrl": "https://github.com/HyperRaptor/diplomna",
+  "workFolder": "_work",
+  "useV2Flow": true,
+  "serverUrlV2": "https://broker.actions.githubusercontent.com/"
+}

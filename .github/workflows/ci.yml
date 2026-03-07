@@ -88,6 +88,23 @@ jobs:
           }
           exit $exitCode
 
+      - name: Find coverage output
+        run: |
+          Write-Host "=== CodeCoverage folder ==="
+          if (Test-Path "CodeCoverage") {
+            Get-ChildItem -Recurse "CodeCoverage" | Select-Object FullName
+          } else {
+            Write-Host "CodeCoverage folder does not exist"
+          }
+          Write-Host "=== Artifacts folder ==="
+          if (Test-Path "artifacts") {
+            Get-ChildItem -Recurse "artifacts" | Select-Object FullName
+          } else {
+            Write-Host "artifacts folder does not exist"
+          }
+          Write-Host "=== Searching entire workspace for Summary.xml ==="
+          Get-ChildItem -Recurse -Filter "Summary.xml" -ErrorAction SilentlyContinue | Select-Object FullName
+
       - name: Enforce minimum 90% coverage
         run: |
           $coveragePath = "CodeCoverage"
