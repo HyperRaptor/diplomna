@@ -25,6 +25,9 @@ jobs:
   test:
     name: Test and check coverage
     runs-on: self-hosted
+    defaults:
+      run:
+        shell: pwsh
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,11 +35,9 @@ jobs:
           lfs: true
 
       - name: Create artifacts directory
-        shell: pwsh
         run: New-Item -ItemType Directory -Force -Path artifacts, CodeCoverage
 
       - name: Run Unity tests with coverage
-        shell: pwsh
         run: |
           $unityPath = "F:\Unity\Installs\6000.3.8f1\Editor\Unity.exe"
           & $unityPath `
@@ -55,30 +56,28 @@ jobs:
           exit $exitCode
 
       - name: Enforce minimum 90% coverage
-        shell: pwsh
         run: |
-          python - << 'PY'
-          import os, sys, xml.etree.ElementTree as ET
-          coverage_path = "CodeCoverage"
-          min_percent = 90.0
-          summary_file = os.path.join(coverage_path, "Summary.xml")
-          if not os.path.isfile(summary_file):
-              print(f"Coverage summary file not found at {summary_file}", file=sys.stderr); sys.exit(1)
-          tree = ET.parse(summary_file)
-          root = tree.getroot()
-          summary = root.find(".//Summary")
-          if summary is None:
-              print("Summary node not found in coverage report.", file=sys.stderr); sys.exit(1)
-          try:
-              visited = int(summary.get("visitedSequencePoints", "0"))
-              total   = int(summary.get("numSequencePoints",   "0"))
-          except ValueError:
-              print("Invalid sequence point values.", file=sys.stderr); sys.exit(1)
-          percent = (visited / total * 100.0) if total > 0 else 0.0
-          print(f"Total line coverage: {percent:.2f}% (minimum required: {min_percent:.2f}%)")
-          if percent < min_percent:
-              print("Coverage below required threshold.", file=sys.stderr); sys.exit(1)
-          PY
+          $coveragePath = "CodeCoverage"
+          $minPercent = 90.0
+          $summaryFile = Join-Path $coveragePath "Summary.xml"
+          if (-not (Test-Path $summaryFile)) {
+            Write-Error "Coverage summary file not found at $summaryFile"
+            exit 1
+          }
+          [xml]$xml = Get-Content $summaryFile
+          $summary = $xml.SelectSingleNode(".//Summary")
+          if ($null -eq $summary) {
+            Write-Error "Summary node not found in coverage report."
+            exit 1
+          }
+          $visited = [int]$summary.GetAttribute("visitedSequencePoints")
+          $total = [int]$summary.GetAttribute("numSequencePoints")
+          $percent = if ($total -gt 0) { ($visited / $total) * 100.0 } else { 0.0 }
+          Write-Host ("Total line coverage: {0:F2}% (minimum required: {1:F2}%)" -f $percent, $minPercent)
+          if ($percent -lt $minPercent) {
+            Write-Error "Coverage below required threshold."
+            exit 1
+          }
 
       - name: Upload test results
         if: always()
