@@ -52,7 +52,13 @@ jobs:
             -coverageOptions "generateAdditionalMetrics;generateHtmlReport;generateBadgeReport" `
             -logFile artifacts/unity-log.txt
           $exitCode = $LASTEXITCODE
-          Get-Content artifacts/unity-log.txt
+          Write-Host "Unity exited with code: $exitCode"
+          if (Test-Path artifacts/unity-log.txt) {
+            Get-Content artifacts/unity-log.txt
+          } else {
+            Write-Host "No log file was created - Unity may have failed to start"
+            Get-ChildItem artifacts/
+          }
           exit $exitCode
 
       - name: Enforce minimum 90% coverage
