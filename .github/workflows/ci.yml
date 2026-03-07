@@ -37,11 +37,15 @@ jobs:
       - name: Create artifacts directory
         run: New-Item -ItemType Directory -Force -Path artifacts, CodeCoverage
 
-      - name: Clear Unity Library cache
-        run: |
-          if (Test-Path "Library") {
-            Remove-Item -Recurse -Force "Library"
-          }
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: |
+            Library
+            F:\UnityPackageCache
+          key: Unity-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Unity-
 
       - name: Set Unity package cache location
         run: |
@@ -81,7 +85,11 @@ jobs:
           Write-Host "Unity exited with code: $exitCode"
 
           if (Test-Path $logFile) {
-            Get-Content $logFile
+            Get-Content $logFile | Where-Object { 
+              $_ -match "error|warning|Test|Coverage|FAILED|PASSED|Exception" -or
+              $_ -match "^\[Test" -or
+              $_ -match "exited with"
+            }
           } else {
             Write-Host "No log file was created"
             Get-ChildItem artifacts/
