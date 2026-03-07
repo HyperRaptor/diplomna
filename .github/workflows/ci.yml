@@ -6,8 +6,19 @@ on:
       - ci/cd
   pull_request:
 jobs:
+  activate:
+    name: Activate Unity License
+    runs-on: ubuntu-latest
+    steps:
+      - name: Activate Unity Personal License
+        uses: game-ci/unity-activate@v2
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+
   build-and-test:
     name: Lint, test and check coverage
+    needs: activate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,7 +42,6 @@ jobs:
         env:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           projectPath: .
           testMode: All
