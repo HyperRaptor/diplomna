@@ -27,11 +27,16 @@ jobs:
             Library-${{ runner.os }}-${{ github.workflow }}-
             Library-${{ runner.os }}-
             Library-
-
+      
+      - name: Run dotnet format (linter)
+        run: dotnet format --verify-no-changes
+      
       - name: Run Unity tests with coverage
         id: unity-tests
         uses: game-ci/unity-test-runner@v4
         env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           projectPath: .
@@ -40,7 +45,7 @@ jobs:
           coverageOptions: generateAdditionalMetrics;generateHtmlReport;generateBadgeReport
 
       - name: Enforce minimum 90% coverage
-        if: success()
+        if: steps.unity-tests.outputs.coveragePath != ''
         env:
           COVERAGE_PATH: ${{ steps.unity-tests.outputs.coveragePath }}
           MIN_COVERAGE_PERCENT: "90"
