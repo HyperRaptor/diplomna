@@ -37,6 +37,12 @@ jobs:
       - name: Create artifacts directory
         run: New-Item -ItemType Directory -Force -Path artifacts, CodeCoverage
 
+      - name: Clear Unity Library cache
+        run: |
+          if (Test-Path "Library") {
+            Remove-Item -Recurse -Force "Library"
+          }
+
       - name: Run Unity tests with coverage
         run: |
           $unityPath = "F:\Unity\Installs\6000.3.8f1\Editor\Unity.exe"
