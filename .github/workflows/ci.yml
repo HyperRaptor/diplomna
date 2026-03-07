@@ -96,6 +96,24 @@ jobs:
           }
           exit $exitCode
 
+      - name: Debug output folders
+        if: always()
+        run: |
+          Write-Host "=== Current directory ==="
+          Get-Location
+          Write-Host "=== All files in workspace ==="
+          Get-ChildItem -Recurse | Where-Object { $_.FullName -match "Coverage|coverage|Summary|summary" } | Select-Object FullName
+          Write-Host "=== CodeCoverage folder ==="
+          if (Test-Path "CodeCoverage") {
+            Get-ChildItem -Recurse "CodeCoverage" | Select-Object FullName
+          } else {
+            Write-Host "CodeCoverage folder does not exist at all"
+          }
+          Write-Host "=== Unity log coverage lines ==="
+          if (Test-Path "artifacts\unity-log.txt") {
+            Get-Content "artifacts\unity-log.txt" | Where-Object { $_ -match -join("cover","age") }
+          }
+
       - name: Enforce minimum 90% coverage
         run: |
           $coveragePath = "CodeCoverage"
