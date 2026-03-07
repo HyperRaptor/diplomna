@@ -5,20 +5,25 @@ on:
       - main
       - ci/cd
   pull_request:
+
 jobs:
-  activate:
-    name: Activate Unity License
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
-      - name: Activate Unity Personal License
-        uses: game-ci/unity-activate@v2
-        env:
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Run dotnet format
+        run: dotnet format --verify-no-changes
 
   build-and-test:
-    name: Lint, test and check coverage
-    needs: activate
+    name: Test and check coverage
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -42,14 +47,12 @@ jobs:
         env:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           projectPath: .
           testMode: All
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           coverageOptions: generateAdditionalMetrics;generateHtmlReport;generateBadgeReport
-
-      - name: Run dotnet format (linter)
-        run: dotnet format --verify-no-changes
 
       - name: Enforce minimum 90% coverage
         if: steps.unity-tests.outputs.coveragePath != ''
