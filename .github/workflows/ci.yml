@@ -40,23 +40,33 @@ jobs:
       - name: Run Unity tests with coverage
         run: |
           $unityPath = "F:\Unity\Installs\6000.3.8f1\Editor\Unity.exe"
-          & $unityPath `
-            -batchmode `
-            -nographics `
-            -projectPath . `
-            -runTests `
-            -testMode All `
-            -testResults artifacts/test-results.xml `
-            -enableCodeCoverage `
-            -coverageResultsPath CodeCoverage `
-            -coverageOptions "generateAdditionalMetrics;generateHtmlReport;generateBadgeReport" `
-            -logFile artifacts/unity-log.txt
-          $exitCode = $LASTEXITCODE
+          $projectPath = (Get-Location).Path
+          $logFile = Join-Path $projectPath "artifacts\unity-log.txt"
+          $testResults = Join-Path $projectPath "artifacts\test-results.xml"
+          $coveragePath = Join-Path $projectPath "CodeCoverage"
+
+          $arguments = @(
+            "-batchmode",
+            "-nographics",
+            "-projectPath", $projectPath,
+            "-runTests",
+            "-testMode", "All",
+            "-testResults", $testResults,
+            "-enableCodeCoverage",
+            "-coverageResultsPath", $coveragePath,
+            "-coverageOptions", "generateAdditionalMetrics;generateHtmlReport;generateBadgeReport",
+            "-logFile", $logFile
+          )
+
+          Write-Host "Running Unity with arguments: $arguments"
+          $process = Start-Process -FilePath $unityPath -ArgumentList $arguments -Wait -PassThru
+          $exitCode = $process.ExitCode
           Write-Host "Unity exited with code: $exitCode"
-          if (Test-Path artifacts/unity-log.txt) {
-            Get-Content artifacts/unity-log.txt
+
+          if (Test-Path $logFile) {
+            Get-Content $logFile
           } else {
-            Write-Host "No log file was created - Unity may have failed to start"
+            Write-Host "No log file was created"
             Get-ChildItem artifacts/
           }
           exit $exitCode
