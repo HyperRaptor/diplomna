@@ -22,7 +22,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: Library
-          key: Library-${{ runner.os }}-${{ github.workflow }}-${{ github.ref }}
+          key: Library-${{ runner.os }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-${{ runner.os }}-${{ github.workflow }}-
             Library-${{ runner.os }}-
@@ -40,7 +40,7 @@ jobs:
           coverageOptions: generateAdditionalMetrics;generateHtmlReport;generateBadgeReport
 
       - name: Enforce minimum 90% coverage
-        if: always()
+        if: success()
         env:
           COVERAGE_PATH: ${{ steps.unity-tests.outputs.coveragePath }}
           MIN_COVERAGE_PERCENT: "90"
