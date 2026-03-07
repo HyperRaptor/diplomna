@@ -38,6 +38,7 @@ jobs:
         run: New-Item -ItemType Directory -Force -Path artifacts, CodeCoverage
 
       - name: Cache Unity Library
+        id: unity-cache
         uses: actions/cache@v4
         with:
           path: |
@@ -46,6 +47,13 @@ jobs:
           key: Unity-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Unity-
+
+      - name: Clear Library if cache invalid
+        if: steps.unity-cache.outputs.cache-hit != 'true'
+        run: |
+          if (Test-Path "Library") {
+            Remove-Item -Recurse -Force "Library"
+          }
 
       - name: Set Unity package cache location
         run: |
