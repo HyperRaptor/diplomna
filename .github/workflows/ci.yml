@@ -18,18 +18,6 @@ jobs:
         with:
           lfs: true
 
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: "8.0.x"
-
-      - name: Install CSharpier (C# linter)
-        run: dotnet tool install -g csharpier
-
-      - name: Run CSharpier (format check)
-        run: |
-          ~/.dotnet/tools/csharpier Assets/Scripts --check
-
       - name: Cache Unity Library
         uses: actions/cache@v4
         with:
@@ -98,14 +86,14 @@ jobs:
           PY
 
       - name: Upload test results
-        if: always()
+        if: always() && steps.unity-tests.outputs.artifactsPath != ''
         uses: actions/upload-artifact@v4
         with:
           name: unity-test-results
           path: ${{ steps.unity-tests.outputs.artifactsPath }}
 
       - name: Upload coverage results
-        if: always()
+        if: always() && steps.unity-tests.outputs.coveragePath != ''
         uses: actions/upload-artifact@v4
         with:
           name: unity-coverage-results

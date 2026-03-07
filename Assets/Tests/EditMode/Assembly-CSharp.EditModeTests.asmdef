@@ -1,0 +1,24 @@
+{
+  "name": "Assembly-CSharp.EditModeTests",
+  "rootNamespace": "",
+  "references": [
+    "Assembly-CSharp",
+    "Game",
+    "Unity.TextMeshPro"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
+
