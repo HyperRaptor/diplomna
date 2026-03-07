@@ -1,0 +1,113 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - ci/cd
+  pull_request:
+
+jobs:
+  build-and-test:
+    name: Lint, test and check coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Install CSharpier (C# linter)
+        run: dotnet tool install -g csharpier
+
+      - name: Run CSharpier (format check)
+        run: |
+          ~/.dotnet/tools/csharpier Assets/Scripts --check
+
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-${{ runner.os }}-${{ github.workflow }}-${{ github.ref }}
+          restore-keys: |
+            Library-${{ runner.os }}-${{ github.workflow }}-
+            Library-${{ runner.os }}-
+            Library-
+
+      - name: Run Unity tests with coverage
+        id: unity-tests
+        uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          projectPath: .
+          testMode: All
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          coverageOptions: generateAdditionalMetrics;generateHtmlReport;generateBadgeReport
+
+      - name: Enforce minimum 90% coverage
+        if: always()
+        env:
+          COVERAGE_PATH: ${{ steps.unity-tests.outputs.coveragePath }}
+          MIN_COVERAGE_PERCENT: "90"
+        run: |
+          python - << 'PY'
+          import os
+          import sys
+          import xml.etree.ElementTree as ET
+
+          coverage_path = os.environ.get("COVERAGE_PATH")
+          min_percent = float(os.environ.get("MIN_COVERAGE_PERCENT", "90"))
+
+          if not coverage_path:
+              print("COVERAGE_PATH not provided.", file=sys.stderr)
+              sys.exit(1)
+
+          summary_file = os.path.join(coverage_path, "Summary.xml")
+          if not os.path.isfile(summary_file):
+              print(f"Coverage summary file not found at {summary_file}", file=sys.stderr)
+              sys.exit(1)
+
+          tree = ET.parse(summary_file)
+          root = tree.getroot()
+
+          summary = root.find(".//Summary")
+          if summary is None:
+              print("Summary node not found in coverage report.", file=sys.stderr)
+              sys.exit(1)
+
+          try:
+              visited = int(summary.get("visitedSequencePoints", "0"))
+              total = int(summary.get("numSequencePoints", "0"))
+          except ValueError:
+              print("Invalid sequence point values in coverage report.", file=sys.stderr)
+              sys.exit(1)
+
+          percent = (visited / total * 100.0) if total > 0 else 0.0
+          print(f"Total line coverage: {percent:.2f}% (minimum required: {min_percent:.2f}%)")
+
+          if percent < min_percent:
+              print("Coverage below required threshold.", file=sys.stderr)
+              sys.exit(1)
+          PY
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unity-test-results
+          path: ${{ steps.unity-tests.outputs.artifactsPath }}
+
+      - name: Upload coverage results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unity-coverage-results
+          path: ${{ steps.unity-tests.outputs.coveragePath }}
+
