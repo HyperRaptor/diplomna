@@ -43,6 +43,17 @@ jobs:
             Remove-Item -Recurse -Force "Library"
           }
 
+      - name: Set Unity package cache location
+        run: |
+          $cacheDir = "F:\UnityPackageCache"
+          New-Item -ItemType Directory -Force -Path $cacheDir
+          $bootConfig = "ProjectSettings\boot.config"
+          if (Test-Path $bootConfig) {
+            $content = Get-Content $bootConfig
+            $content | Where-Object { $_ -notmatch "packagecache-path" } | Set-Content $bootConfig
+          }
+          Add-Content -Path $bootConfig -Value "packagecache-path=$cacheDir"
+
       - name: Run Unity tests with coverage
         run: |
           $unityPath = "F:\Unity\Installs\6000.3.8f1\Editor\Unity.exe"
