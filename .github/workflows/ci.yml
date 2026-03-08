@@ -104,29 +104,9 @@ jobs:
           }
           exit $exitCode
 
-      - name: Debug output folders
-        if: always()
-        run: |
-          Write-Host "=== Current directory ==="
-          Get-Location
-          Write-Host "=== All files in workspace ==="
-          Get-ChildItem -Recurse | Where-Object { $_.FullName -match "Coverage|coverage|Summary|summary" } | Select-Object FullName
-          Write-Host "=== CodeCoverage folder ==="
-          if (Test-Path "CodeCoverage") {
-            Get-ChildItem -Recurse "CodeCoverage" | Select-Object FullName
-          } else {
-            Write-Host "CodeCoverage folder does not exist at all"
-          }
-          Write-Host "=== Unity log coverage lines ==="
-          if (Test-Path "artifacts\unity-log.txt") {
-            Get-Content "artifacts\unity-log.txt" | Where-Object { $_ -match -join("cover","age") }
-          }
-
       - name: Enforce minimum 90% coverage
         run: |
-          $coveragePath = "CodeCoverage"
-          $minPercent = 90.0
-          $summaryFile = Join-Path $coveragePath "Summary.xml"
+          $summaryFile = "CodeCoverage\Report\Summary.xml"
           if (-not (Test-Path $summaryFile)) {
             Write-Error "Coverage summary file not found at $summaryFile"
             exit 1
@@ -140,8 +120,8 @@ jobs:
           $visited = [int]$summary.GetAttribute("visitedSequencePoints")
           $total = [int]$summary.GetAttribute("numSequencePoints")
           $percent = if ($total -gt 0) { ($visited / $total) * 100.0 } else { 0.0 }
-          Write-Host ("Total line coverage: {0:F2}% (minimum required: {1:F2}%)" -f $percent, $minPercent)
-          if ($percent -lt $minPercent) {
+          Write-Host ("Total line coverage: {0:F2}% (minimum required: 90.00%)" -f $percent)
+          if ($percent -lt 90.0) {
             Write-Error "Coverage below required threshold."
             exit 1
           }
