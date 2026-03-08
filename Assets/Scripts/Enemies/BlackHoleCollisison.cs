@@ -8,7 +8,7 @@ public class BlackHoleCollisison : MonoBehaviour
     public GameObject gameOver;
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Consumable"))
+        if (collision.gameObject.CompareTag("Consumable"))
         {
             transform.localScale += new Vector3(sizeIncrease, sizeIncrease, sizeIncrease);
             UnitManager.Instance.Units.Remove(collision.gameObject);

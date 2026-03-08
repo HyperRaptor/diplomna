@@ -16,7 +16,7 @@ public class WeaponButton : ShopButton
     protected override void Execute()
     {
         PlacementManager.Instance.BeginPlacement(objectToSpawn);
-        shop.GetComponent<ShopToggle>().Toggle(); 
-        shopToggle.GetComponent<ToggleArrow>().Toggle(); 
+        shop.GetComponent<ShopToggle>().Toggle();
+        shopToggle.GetComponent<ToggleArrow>().Toggle();
     }
 }

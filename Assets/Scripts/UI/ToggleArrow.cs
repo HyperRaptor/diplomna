@@ -4,7 +4,8 @@ using TMPro;
 public class ToggleArrow : MonoBehaviour
 {
     private bool left = true;
-    public void Toggle(){
+    public void Toggle()
+    {
         gameObject.GetComponent<TMP_Text>().text = left ? ">" : "<";
         left = !left;
     }

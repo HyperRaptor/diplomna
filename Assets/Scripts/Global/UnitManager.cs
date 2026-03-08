@@ -11,20 +11,26 @@ public class UnitManager : MonoBehaviour
     bool pressed = false;
     public int normalSpeed, fastSpeed;
     void Awake() => Instance = this;
-    public void ChangeState(){
+    public void ChangeState()
+    {
         pressed = !pressed;
     }
 
     void Update()
     {
-        if(Instance.Sattelites.Count > 0){
-            if(pressed){
-                foreach(GameObject gun in Instance.Sattelites){
+        if (Instance.Sattelites.Count > 0)
+        {
+            if (pressed)
+            {
+                foreach (GameObject gun in Instance.Sattelites)
+                {
                     gun.GetComponent<SpiralMovement>().speed = fastSpeed;
                 }
             }
-            else{
-                foreach(GameObject gun in Instance.Sattelites){
+            else
+            {
+                foreach (GameObject gun in Instance.Sattelites)
+                {
                     gun.GetComponent<SpiralMovement>().speed = normalSpeed;
                 }
             }

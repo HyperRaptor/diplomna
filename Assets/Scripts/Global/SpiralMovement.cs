@@ -14,7 +14,7 @@ public class SpiralMovement : MonoBehaviour
     {
         Vector3 direction = Centre.transform.position - transform.position;
         direction = Quaternion.Euler(0, 0, angle) * direction;
-        if(angle == 90) AlignWithDirection(direction);
+        if (angle == 90) AlignWithDirection(direction);
         float distanceThisFrame = speed * Time.deltaTime;
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
     }

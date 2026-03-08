@@ -11,7 +11,7 @@ public class MoveInDirection : MonoBehaviour
         {
             dir = Vector3.right;
         }
-        
+
         direction = dir.normalized;
     }
 

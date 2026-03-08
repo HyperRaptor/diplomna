@@ -14,7 +14,7 @@ public abstract class EconButton : ShopButton
     }
     public override void ButtonClick()
     {
-        if(current < max)
+        if (current < max)
         {
             base.ButtonClick();
         }

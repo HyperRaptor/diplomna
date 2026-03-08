@@ -24,15 +24,15 @@ public class Blaster : MonoBehaviour
     }
     void Update()
     {
-        if(UnitManager.Instance.Units.Count > 0)
+        if (UnitManager.Instance.Units.Count > 0)
         {
             timer += Time.deltaTime;
-            if(timer >= interval)
+            if (timer >= interval)
             {
                 GameObject min = UnitManager.Instance.Units[0];
-                foreach(GameObject unit in UnitManager.Instance.Units)
+                foreach (GameObject unit in UnitManager.Instance.Units)
                 {
-                    if(Vector3.Distance(min.transform.position, transform.position) > Vector3.Distance(unit.transform.position, transform.position))
+                    if (Vector3.Distance(min.transform.position, transform.position) > Vector3.Distance(unit.transform.position, transform.position))
                     {
                         min = unit;
                     }

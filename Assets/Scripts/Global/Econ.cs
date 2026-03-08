@@ -21,7 +21,7 @@ public class Econ : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if(timer >= interval)
+        if (timer >= interval)
         {
             MoneyChange(econ);
             timer = 0;
@@ -35,7 +35,7 @@ public class Econ : MonoBehaviour
     }
     public bool Deduct(int value)
     {
-        if((money - value) < 0) return false;
+        if ((money - value) < 0) return false;
         MoneyChange(-value);
         return true;
     }

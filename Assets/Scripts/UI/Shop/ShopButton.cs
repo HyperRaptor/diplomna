@@ -11,7 +11,7 @@ public abstract class ShopButton : MonoBehaviour
     }
     public virtual void ButtonClick()
     {
-        if(global.GetComponent<Econ>().Deduct(cost))
+        if (global.GetComponent<Econ>().Deduct(cost))
         {
             Execute();
         }

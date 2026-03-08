@@ -14,14 +14,16 @@ public class ShopToggle : MonoBehaviour
     public void Toggle()
     {
         Vector2 anchored = GetComponent<RectTransform>().anchoredPosition;
-        if(hidden){
+        if (hidden)
+        {
             anchored.x -= moveAmountX;
             hidden = false;
-        } 
-        else{
+        }
+        else
+        {
             anchored.x += moveAmountX;
             hidden = true;
-        } 
+        }
         GetComponent<RectTransform>().anchoredPosition = anchored;
     }
 }

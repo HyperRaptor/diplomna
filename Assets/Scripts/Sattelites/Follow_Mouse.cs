@@ -17,8 +17,10 @@ public class Follow_Mouse : MonoBehaviour
         worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
         transform.position = worldPosition;
         timer += Time.deltaTime;
-        if(timer >= interval){
-            if(Input.GetMouseButtonDown(0)){
+        if (timer >= interval)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
                 moveScript.enabled = true;
                 thisScript.enabled = false;
             }
