@@ -83,7 +83,7 @@ jobs:
             "-testResults", $testResults,
             "-enableCodeCoverage",
             "-coverageResultsPath", $coveragePath,
-            "-coverageOptions", "generateAdditionalMetrics;generateHtmlReport;generateBadgeReport;assemblyFilters:+Game"
+            "-coverageOptions", "generateAdditionalMetrics;generateHtmlReport;generateBadgeReport;assemblyFilters:+Assembly-CSharp;+Assembly-CSharp.EditModeTests;+Game"
             "-logFile", $logFile
           )
 
