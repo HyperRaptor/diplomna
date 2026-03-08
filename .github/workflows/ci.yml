@@ -19,8 +19,11 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Run dotnet format
+      - name: Check formatting
         run: dotnet format --no-restore --verify-no-changes
+
+      - name: Check compilation
+        run: dotnet build --no-restore
 
   test:
     name: Test and check coverage
