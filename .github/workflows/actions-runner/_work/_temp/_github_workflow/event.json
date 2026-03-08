@@ -1,7 +1,7 @@
 {
-  "after": "4c868eac43aabbf636c2ec79e33a58cffe2993ce",
+  "after": "c3b31ec6590abba8ffc66d46fbd76b97b17f0501",
   "base_ref": null,
-  "before": "67e125ca8faf6e7d6ccf90d34ec84b506f1f62f9",
+  "before": "4c868eac43aabbf636c2ec79e33a58cffe2993ce",
   "commits": [
     {
       "author": {
@@ -15,14 +15,32 @@
         "username": "HyperRaptor"
       },
       "distinct": true,
-      "id": "4c868eac43aabbf636c2ec79e33a58cffe2993ce",
-      "message": "Adding temporary unit test error for testing 2",
-      "timestamp": "2026-03-08T14:18:59+02:00",
-      "tree_id": "00a6d8f4bbb2069efc22679ae146a0825eba70b4",
-      "url": "https://github.com/HyperRaptor/diplomna/commit/4c868eac43aabbf636c2ec79e33a58cffe2993ce"
+      "id": "ecdf3cab327e72d45bf0a32b85bb4c082523593a",
+      "message": "Removing syntax error",
+      "timestamp": "2026-03-08T14:19:48+02:00",
+      "tree_id": "882b2f3c28b99c0ba7f688493e32a12d07fd856d",
+      "url": "https://github.com/HyperRaptor/diplomna/commit/ecdf3cab327e72d45bf0a32b85bb4c082523593a"
+    },
+    {
+      "author": {
+        "email": "moni.aleksiev07@gmail.com",
+        "name": "HyperRaptor",
+        "username": "HyperRaptor"
+      },
+      "committer": {
+        "email": "moni.aleksiev07@gmail.com",
+        "name": "HyperRaptor",
+        "username": "HyperRaptor"
+      },
+      "distinct": true,
+      "id": "c3b31ec6590abba8ffc66d46fbd76b97b17f0501",
+      "message": "Adding temporary format error for testing",
+      "timestamp": "2026-03-08T14:20:56+02:00",
+      "tree_id": "871057af5461a2b2b0b025f7806a1af5c7477736",
+      "url": "https://github.com/HyperRaptor/diplomna/commit/c3b31ec6590abba8ffc66d46fbd76b97b17f0501"
     }
   ],
-  "compare": "https://github.com/HyperRaptor/diplomna/compare/67e125ca8faf...4c868eac43aa",
+  "compare": "https://github.com/HyperRaptor/diplomna/compare/4c868eac43aa...c3b31ec6590a",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -38,11 +56,11 @@
       "username": "HyperRaptor"
     },
     "distinct": true,
-    "id": "4c868eac43aabbf636c2ec79e33a58cffe2993ce",
-    "message": "Adding temporary unit test error for testing 2",
-    "timestamp": "2026-03-08T14:18:59+02:00",
-    "tree_id": "00a6d8f4bbb2069efc22679ae146a0825eba70b4",
-    "url": "https://github.com/HyperRaptor/diplomna/commit/4c868eac43aabbf636c2ec79e33a58cffe2993ce"
+    "id": "c3b31ec6590abba8ffc66d46fbd76b97b17f0501",
+    "message": "Adding temporary format error for testing",
+    "timestamp": "2026-03-08T14:20:56+02:00",
+    "tree_id": "871057af5461a2b2b0b025f7806a1af5c7477736",
+    "url": "https://github.com/HyperRaptor/diplomna/commit/c3b31ec6590abba8ffc66d46fbd76b97b17f0501"
   },
   "pusher": {
     "email": "103509051+HyperRaptor@users.noreply.github.com",
@@ -134,9 +152,9 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/HyperRaptor/diplomna/pulls{/number}",
-    "pushed_at": 1772972341,
+    "pushed_at": 1772973552,
     "releases_url": "https://api.github.com/repos/HyperRaptor/diplomna/releases{/id}",
-    "size": 470806,
+    "size": 470828,
     "ssh_url": "git@github.com:HyperRaptor/diplomna.git",
     "stargazers": 0,
     "stargazers_count": 0,
