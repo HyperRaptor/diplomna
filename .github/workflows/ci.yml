@@ -104,23 +104,19 @@ jobs:
 
       - name: Enforce minimum 90% coverage
         run: |
-          $summaryFile = "CodeCoverage\Report\Summary.xml"
-          if (-not (Test-Path $summaryFile)) {
-            Write-Error "Coverage summary file not found at $summaryFile"
+          $visitedFile = "CodeCoverage\diplomna-opencov\EditMode\TestCoverageResults_0001.xml"
+          if (-not (Test-Path $visitedFile)) {
+            Write-Error "Coverage results file not found at $visitedFile"
             exit 1
           }
-          [xml]$xml = Get-Content $summaryFile
-          $summary = $xml.SelectSingleNode(".//Summary")
-          if ($null -eq $summary) {
-            Write-Error "Summary node not found in coverage report."
-            exit 1
-          }
-          $visited = [int]$summary.GetAttribute("visitedSequencePoints")
-          $total = [int]$summary.GetAttribute("numSequencePoints")
+          [xml]$xml = Get-Content $visitedFile
+          $summary = $xml.CoverageSession.Summary
+          $visited = [int]$summary.visitedSequencePoints
+          $total = [int]$summary.numSequencePoints
           $percent = if ($total -gt 0) { ($visited / $total) * 100.0 } else { 0.0 }
           Write-Host ("Total line coverage: {0:F2}% (minimum required: 90.00%)" -f $percent)
           if ($percent -lt 90.0) {
-            Write-Error "Coverage below required threshold."
+            Write-Error "Coverage {0:F2}% is below required 90% threshold." -f $percent
             exit 1
           }
 
