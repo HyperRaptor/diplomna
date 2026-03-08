@@ -85,6 +85,7 @@ jobs:
             "-coverageResultsPath", $coveragePath,
             "-coverageOptions", "generateAdditionalMetrics;generateHtmlReport;generateBadgeReport;assemblyFilters:+Assembly-CSharp;+Assembly-CSharp.EditModeTests;+Game",
             "-debugCodeOptimization",
+            "-scriptingDefineSymbols", "ENABLE_CODE_COVERAGE",
             "-logFile", $logFile
           )
 
