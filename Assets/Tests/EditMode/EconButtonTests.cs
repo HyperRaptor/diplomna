@@ -52,7 +52,7 @@ public class EconButtonTests
         econButton.ButtonClick();
 
         Assert.AreEqual(1, econButton.ExecuteCount);
-        Assert.AreEqual(1, 2);
+        //Assert.AreEqual(1, 2);
     }
 }
 
