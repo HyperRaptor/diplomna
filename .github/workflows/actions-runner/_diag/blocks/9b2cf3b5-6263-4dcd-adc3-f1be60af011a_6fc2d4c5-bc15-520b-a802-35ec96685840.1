@@ -1,0 +1,155 @@
+﻿2026-03-08T13:17:44.2977601Z Current runner version: '2.332.0'
+2026-03-08T13:17:44.2989386Z Runner name: 'diplom ci'
+2026-03-08T13:17:44.2990086Z Runner group name: 'Default'
+2026-03-08T13:17:44.2990949Z Machine name: 'DESKTOP-QNNOSIK'
+2026-03-08T13:17:44.2994107Z ##[group]GITHUB_TOKEN Permissions
+2026-03-08T13:17:44.2996187Z Contents: read
+2026-03-08T13:17:44.2996563Z Metadata: read
+2026-03-08T13:17:44.2996917Z Packages: read
+2026-03-08T13:17:44.2997305Z ##[endgroup]
+2026-03-08T13:17:44.2999216Z Secret source: Actions
+2026-03-08T13:17:44.2999714Z Prepare workflow directory
+2026-03-08T13:17:44.4081314Z Prepare all required actions
+2026-03-08T13:17:44.4138012Z Getting action download info
+2026-03-08T13:17:45.1006384Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-03-08T13:17:46.4527748Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2026-03-08T13:17:48.5119920Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-03-08T13:17:51.7078822Z Complete job name: Test and check coverage
+2026-03-08T13:17:51.9205816Z ##[group]Run actions/checkout@v4
+2026-03-08T13:17:51.9207729Z with:
+2026-03-08T13:17:51.9208283Z   lfs: true
+2026-03-08T13:17:51.9208724Z   repository: HyperRaptor/diplomna
+2026-03-08T13:17:51.9210846Z   token: ***
+2026-03-08T13:17:51.9211711Z   ssh-strict: true
+2026-03-08T13:17:51.9212633Z   ssh-user: git
+2026-03-08T13:17:51.9213140Z   persist-credentials: true
+2026-03-08T13:17:51.9214132Z   clean: true
+2026-03-08T13:17:51.9214994Z   sparse-checkout-cone-mode: true
+2026-03-08T13:17:51.9216504Z   fetch-depth: 1
+2026-03-08T13:17:51.9216989Z   fetch-tags: false
+2026-03-08T13:17:51.9217832Z   show-progress: true
+2026-03-08T13:17:51.9218335Z   submodules: false
+2026-03-08T13:17:51.9219173Z   set-safe-directory: true
+2026-03-08T13:17:51.9221328Z ##[endgroup]
+2026-03-08T13:17:53.8628123Z Syncing repository: HyperRaptor/diplomna
+2026-03-08T13:17:53.8629424Z ##[group]Getting Git version info
+2026-03-08T13:17:53.8630007Z Working directory is 'F:\Unity\Repos\diplomna\.github\workflows\actions-runner\_work\diplomna\diplomna'
+2026-03-08T13:17:53.9152626Z [command]"C:\Program Files\Git\cmd\git.exe" version
+2026-03-08T13:17:53.9448921Z git version 2.47.0.windows.2
+2026-03-08T13:17:54.0172490Z [command]"C:\Program Files\Git\cmd\git.exe" lfs version
+2026-03-08T13:17:54.3312657Z git-lfs/3.5.1 (GitHub; windows amd64; go 1.21.7; git e237bb3a)
+2026-03-08T13:17:54.3367054Z ##[endgroup]
+2026-03-08T13:17:54.3386052Z Copying 'C:\Users\Moni\.gitconfig' to 'F:\Unity\Repos\diplomna\.github\workflows\actions-runner\_work\_temp\a71797ee-88f2-4c06-8abc-99dec7f85aa2\.gitconfig'
+2026-03-08T13:17:54.3423004Z Temporarily overriding HOME='F:\Unity\Repos\diplomna\.github\workflows\actions-runner\_work\_temp\a71797ee-88f2-4c06-8abc-99dec7f85aa2' before making global git config changes
+2026-03-08T13:17:54.3425916Z Adding repository directory to the temporary git global config as a safe directory
+2026-03-08T13:17:54.3448252Z [command]"C:\Program Files\Git\cmd\git.exe" config --global --add safe.directory F:\Unity\Repos\diplomna\.github\workflows\actions-runner\_work\diplomna\diplomna
+2026-03-08T13:17:54.4038269Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --get remote.origin.url
+2026-03-08T13:17:54.4392096Z https://github.com/HyperRaptor/diplomna
+2026-03-08T13:17:54.4455567Z ##[group]Removing previously created refs, to avoid conflicts
+2026-03-08T13:17:54.4475846Z [command]"C:\Program Files\Git\cmd\git.exe" rev-parse --symbolic-full-name --verify --quiet HEAD
+2026-03-08T13:17:54.4891108Z HEAD
+2026-03-08T13:17:54.5864586Z ##[endgroup]
+2026-03-08T13:17:54.5879109Z [command]"C:\Program Files\Git\cmd\git.exe" submodule status
+2026-03-08T13:17:55.3527886Z ##[group]Cleaning the repository
+2026-03-08T13:17:55.3541616Z [command]"C:\Program Files\Git\cmd\git.exe" clean -ffdx
+2026-03-08T13:17:55.4102104Z [command]"C:\Program Files\Git\cmd\git.exe" reset --hard HEAD
+2026-03-08T13:17:55.5073436Z HEAD is now at 8587265 Trying to fix linter build issue
+2026-03-08T13:17:55.5115282Z ##[endgroup]
+2026-03-08T13:17:55.5121407Z ##[group]Disabling automatic garbage collection
+2026-03-08T13:17:55.5135636Z [command]"C:\Program Files\Git\cmd\git.exe" config --local gc.auto 0
+2026-03-08T13:17:55.5512902Z ##[endgroup]
+2026-03-08T13:17:55.5513252Z ##[group]Setting up auth
+2026-03-08T13:17:55.5528153Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-03-08T13:17:55.5891524Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-03-08T13:17:56.2492247Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-03-08T13:17:56.2848837Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-03-08T13:17:56.9156876Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-03-08T13:17:56.9545653Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-03-08T13:17:57.6041702Z [command]"C:\Program Files\Git\cmd\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-03-08T13:17:57.6573644Z ##[endgroup]
+2026-03-08T13:17:57.6585829Z [command]"C:\Program Files\Git\cmd\git.exe" lfs install --local
+2026-03-08T13:17:58.6783316Z Updated Git hooks.
+2026-03-08T13:17:58.6784091Z Git LFS initialized.
+2026-03-08T13:17:58.6891139Z ##[group]Fetching the repository
+2026-03-08T13:17:58.6922004Z [command]"C:\Program Files\Git\cmd\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +5fa25ba4ec11bce72cd8439b81654e6879dadd8f:refs/remotes/origin/ci/cd
+2026-03-08T13:17:59.8252541Z From https://github.com/HyperRaptor/diplomna
+2026-03-08T13:17:59.8253889Z  + 8587265...5fa25ba 5fa25ba4ec11bce72cd8439b81654e6879dadd8f -> origin/ci/cd  (forced update)
+2026-03-08T13:17:59.8608028Z ##[endgroup]
+2026-03-08T13:17:59.8608760Z ##[group]Determining the checkout info
+2026-03-08T13:17:59.8610007Z ##[endgroup]
+2026-03-08T13:17:59.8610660Z ##[group]Fetching LFS objects
+2026-03-08T13:17:59.8628813Z [command]"C:\Program Files\Git\cmd\git.exe" lfs fetch origin refs/remotes/origin/ci/cd
+2026-03-08T13:18:00.4790582Z fetch: Fetching reference refs/remotes/origin/ci/cd
+2026-03-08T13:18:00.9509260Z ##[endgroup]
+2026-03-08T13:18:00.9530485Z [command]"C:\Program Files\Git\cmd\git.exe" sparse-checkout disable
+2026-03-08T13:18:01.0202835Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-03-08T13:18:01.0648775Z ##[group]Checking out the ref
+2026-03-08T13:18:01.0664949Z [command]"C:\Program Files\Git\cmd\git.exe" checkout --progress --force -B ci/cd refs/remotes/origin/ci/cd
+2026-03-08T13:18:01.1694267Z branch 'ci/cd' set up to track 'origin/ci/cd'.
+2026-03-08T13:18:01.1695137Z Your branch is up to date with 'origin/ci/cd'.
+2026-03-08T13:18:01.1696119Z Previous HEAD position was 8587265 Trying to fix linter build issue
+2026-03-08T13:18:01.1697078Z Switched to and reset branch 'ci/cd'
+2026-03-08T13:18:01.9273678Z ##[endgroup]
+2026-03-08T13:18:01.9808401Z [command]"C:\Program Files\Git\cmd\git.exe" log -1 --format=%H
+2026-03-08T13:18:02.0214440Z 5fa25ba4ec11bce72cd8439b81654e6879dadd8f
+2026-03-08T13:18:02.0731212Z ##[group]Run New-Item -ItemType Directory -Force -Path artifacts, CodeCoverage
+2026-03-08T13:18:02.0733204Z [36;1mNew-Item -ItemType Directory -Force -Path artifacts, CodeCoverage[0m
+2026-03-08T13:18:02.0797883Z shell: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-03-08T13:18:02.0800332Z ##[endgroup]
+2026-03-08T13:18:02.4776577Z 
+2026-03-08T13:18:02.4777562Z 
+2026-03-08T13:18:02.4780534Z     Directory: F:\Unity\Repos\diplomna\.github\workflows\actions-runner\_work\diplomna\diplomna
+2026-03-08T13:18:02.4781436Z 
+2026-03-08T13:18:02.4781441Z 
+2026-03-08T13:18:02.4789486Z Mode                 LastWriteTime         Length Name                                                                 
+2026-03-08T13:18:02.4792672Z ----                 -------------         ------ ----                                                                 
+2026-03-08T13:18:02.4799963Z d-----         08-Mar-26     15:18                artifacts                                                            
+2026-03-08T13:18:02.4819977Z d-----         08-Mar-26     15:18                CodeCoverage                                                         
+2026-03-08T13:18:02.4863117Z 
+2026-03-08T13:18:02.4863278Z 
+2026-03-08T13:18:06.0298135Z ##[group]Run actions/cache@v4
+2026-03-08T13:18:06.0298445Z with:
+2026-03-08T13:18:06.0298672Z   path: Library
+F:\UnityPackageCache
+
+2026-03-08T13:18:06.0299084Z   key: Unity-f3b250c67b04e20784ccc0ef53b3f012d228fea60270307fc5652e504cbe349b
+2026-03-08T13:18:06.0299518Z   restore-keys: Unity-
+
+2026-03-08T13:18:06.0299748Z   enableCrossOsArchive: false
+2026-03-08T13:18:06.0299981Z   fail-on-cache-miss: false
+2026-03-08T13:18:06.0300216Z   lookup-only: false
+2026-03-08T13:18:06.0300406Z   save-always: false
+2026-03-08T13:18:06.0300617Z ##[endgroup]
+2026-03-08T13:18:07.1671751Z Cache not found for input keys: Unity-f3b250c67b04e20784ccc0ef53b3f012d228fea60270307fc5652e504cbe349b, Unity-
+2026-03-08T13:18:07.1968204Z ##[group]Run if (Test-Path "Library") {
+2026-03-08T13:18:07.1969202Z [36;1mif (Test-Path "Library") {[0m
+2026-03-08T13:18:07.1969968Z [36;1m  Remove-Item -Recurse -Force "Library"[0m
+2026-03-08T13:18:07.1970633Z [36;1m}[0m
+2026-03-08T13:18:07.2025271Z shell: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-03-08T13:18:07.2025707Z ##[endgroup]
+2026-03-08T13:18:07.5057220Z ##[group]Run $cacheDir = "F:\UnityPackageCache"
+2026-03-08T13:18:07.5058070Z [36;1m$cacheDir = "F:\UnityPackageCache"[0m
+2026-03-08T13:18:07.5058738Z [36;1mNew-Item -ItemType Directory -Force -Path $cacheDir[0m
+2026-03-08T13:18:07.5059390Z [36;1m$bootConfig = "ProjectSettings\boot.config"[0m
+2026-03-08T13:18:07.5059933Z [36;1mif (Test-Path $bootConfig) {[0m
+2026-03-08T13:18:07.5060461Z [36;1m  $content = Get-Content $bootConfig[0m
+2026-03-08T13:18:07.5061323Z [36;1m  $content | Where-Object { $_ -notmatch "packagecache-path" } | Set-Content $bootConfig[0m
+2026-03-08T13:18:07.5062154Z [36;1m}[0m
+2026-03-08T13:18:07.5062644Z [36;1mAdd-Content -Path $bootConfig -Value "packagecache-path=$cacheDir"[0m
+2026-03-08T13:18:07.5115482Z shell: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-03-08T13:18:07.5116587Z ##[endgroup]
+2026-03-08T13:18:07.8300897Z 
+2026-03-08T13:18:07.8301983Z 
+2026-03-08T13:18:07.8304691Z     Directory: F:\
+2026-03-08T13:18:07.8304869Z 
+2026-03-08T13:18:07.8305027Z 
+2026-03-08T13:18:07.8314403Z Mode                 LastWriteTime         Length Name                                                                 
+2026-03-08T13:18:07.8317695Z ----                 -------------         ------ ----                                                                 
+2026-03-08T13:18:07.8325611Z d-----         07-Mar-26     21:03                UnityPackageCache                                                    
+2026-03-08T13:18:07.8455466Z 
+2026-03-08T13:18:07.8455533Z 
+2026-03-08T13:18:07.8911091Z ##[group]Run if (Test-Path "Library") {
+2026-03-08T13:18:07.8912110Z [36;1mif (Test-Path "Library") {[0m
+2026-03-08T13:18:07.8912912Z [36;1m  Remove-Item -Recurse -Force "Library"[0m
+2026-03-08T13:18:07.8928007Z [36;1m}[0m
+2026-03-08T13:18:07.9015228Z shell: C:\Windows\System3
