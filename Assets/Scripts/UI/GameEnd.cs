@@ -11,7 +11,7 @@ public class GameEnd : MonoBehaviour
 	
 	public void SetText(string text)
 	{
-		textToChange.text = text;
+		textToChange.text = text
 	}
 
 }
